@@ -1,0 +1,11 @@
+App(
+    appid="custom_jammer",
+    name="Custom Jammer",
+    apptype=FlipperAppType.PLUGIN,
+    entry_point="custom_jammer_app",
+    requires=["gui", "subghz"],
+    stack_size=4 * 1024,
+    version="1.0",
+    category="Tools",
+    icon="A_128x64",
+)
