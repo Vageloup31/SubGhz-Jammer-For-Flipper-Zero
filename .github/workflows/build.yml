@@ -1,0 +1,27 @@
+name: Build FAP
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build with ufbt
+        uses: flipperdevices/flipperzero-ufbt-action@v1
+        with:
+          app-dir: .
+          sdk-channel: dev   # Use 'release' if dev keeps failing
+
+      - name: Upload FAP
+        uses: actions/upload-artifact@v4
+        with:
+          name: custom-jammer
+          path: dist/*.fap
