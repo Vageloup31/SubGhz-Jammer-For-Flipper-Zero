@@ -6,8 +6,8 @@ static void draw_callback(Canvas* canvas, void* ctx) {
     canvas_clear(canvas);
     canvas_set_font(canvas, FontPrimary);
     canvas_draw_str(canvas, 5, 20, "Custom Jammer");
-    canvas_draw_str(canvas, 5, 40, "Flux Cap ON");
-    canvas_draw_str(canvas, 5, 60, "Full Auto Hop");
+    canvas_draw_str(canvas, 5, 40, "Flux Cap: ON");
+    canvas_draw_str(canvas, 5, 60, "Auto Hopping");
 }
 
 int32_t custom_jammer_app(void* p) {
@@ -23,24 +23,9 @@ int32_t custom_jammer_app(void* p) {
     gui_add_view_port(gui, viewport, GuiLayerFullscreen);
 
     while(1) {
-        // Band 1
-        for(uint32_t f = 300000000; f <= 348000000; f += 500000) {
-            furi_hal_subghz_set_frequency(f);
-            furi_hal_subghz_tx_start(FuriHalSubGhzPresetOok650Async);
-            furi_delay_ms(25);
-            furi_hal_subghz_tx_stop();
-            furi_delay_ms(10);
-        }
-        // Band 2
-        for(uint32_t f = 387000000; f <= 464000000; f += 400000) {
-            furi_hal_subghz_set_frequency(f);
-            furi_hal_subghz_tx_start(FuriHalSubGhzPresetOok650Async);
-            furi_delay_ms(25);
-            furi_hal_subghz_tx_stop();
-            furi_delay_ms(10);
-        }
-        // Band 3
-        for(uint32_t f = 779000000; f <= 928000000; f += 500000) {
+        for(uint32_t f = 300000000; f <= 928000000; f += 500000) {
+            if(f > 348000000 && f < 387000000) continue;
+            if(f > 464000000 && f < 779000000) continue;
             furi_hal_subghz_set_frequency(f);
             furi_hal_subghz_tx_start(FuriHalSubGhzPresetOok650Async);
             furi_delay_ms(25);
