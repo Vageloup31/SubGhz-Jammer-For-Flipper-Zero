@@ -1,27 +1,14 @@
-name: Build FAP
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+name: "Build FAP"
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build with ufbt
+      - name: Build Flipper App Package
         uses: flipperdevices/flipperzero-ufbt-action@v1
         with:
-          app-dir: .
-          sdk-channel: dev   # Use 'release' if dev keeps failing
-
-      - name: Upload FAP
-        uses: actions/upload-artifact@v4
-        with:
-          name: custom-jammer
-          path: dist/*.fap
+          sdk-channel: dev # Set to 'release' or change channel based on Momentum compatibility
