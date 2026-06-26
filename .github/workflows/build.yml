@@ -9,6 +9,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Flipper App Package
-        uses: flipperdevices/flipperzero-ufbt-action@v1
+        uses: flipperdevices/flipperzero-ufbt-action@main
         with:
-          sdk-channel: dev # Set to 'release' or change channel based on Momentum compatibility
+          sdk-channel: dev
