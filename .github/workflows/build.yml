@@ -9,6 +9,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Flipper App Package
-        uses: flipperdevices/flipperzero-ufbt-action@master
+        uses: flipperdevices/flipperzero-ufbt-action@dev
         with:
           sdk-channel: dev
